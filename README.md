@@ -19,7 +19,7 @@ My credentials include a Master's in Space Science and Technology from the Aeron
 
 
 ## Projetos:
-
+* [The Titanic Chalenge](https://bit.ly/3lDd1yl)
 
 ---
 
