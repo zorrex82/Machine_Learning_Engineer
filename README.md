@@ -8,11 +8,11 @@
 # Edinor Júnior
 <sub>*Machine Learning Engineer</sub>
 
-As a experienced Data Scientist and Air Force pilot I combine analytical skills, ability to work in team environments, and attention to details. Having spend the last years applying Machine Learning to Brazilian Air Force real problems, I developed a critical thinking and problem-solving skills.
+I'm an enthusiast of the new techs, since 2014 when I created my first startup, called GoTalent, I begin to learning about big data and how the Machine Learning Algorithms could be modeling the society. 
 
-My credentials include a Master's in Space Science and Technology from the Aeronautics Institute of Technology (ITA), an institution of higher education and advanced research rated as one of the top and most prestigious engineering schools in Brazil, and a MBA in Project and Process Management from the University of Air Force (UNIFA).
+So, for the last six years I come studie and working with data. Specially with Python to analysis and create Machine Learning models. Feel free to follow me and add my contact. Best Reggards! 
 
-**Background in:** Python, Machine Learning, Space Operations and Mathematical Optimisation.
+**Background in:** Python, Machine Learning, R, Big Data and Neural Network.
 
 **Links:**
 * [LinkedIn](https://www.linkedin.com/in/edinorjr)
