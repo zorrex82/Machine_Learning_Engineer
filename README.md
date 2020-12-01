@@ -20,7 +20,7 @@ Best Reggards!
 * [LinkedIn](https://www.linkedin.com/in/edinorjr)
 
 
-## Projetos:
+## Projects:
 * [The Titanic Chalenge](https://bit.ly/3lDd1yl)
 * [Used Cars Sales](https://bit.ly/35o8KZz)
 * [Predicting Hospital Expenses](https://bit.ly/330QNPl)
