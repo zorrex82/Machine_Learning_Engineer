@@ -24,6 +24,7 @@ Best Reggards!
 * [The Titanic Chalenge](https://bit.ly/3lDd1yl)
 * [Used Cars Sales](https://bit.ly/35o8KZz)
 * [Predicting Hospital Expenses](https://bit.ly/330QNPl)
+* [Suicide Rate Overview in Brazil](https://bit.ly/2VEg51F)
 ---
 
 
