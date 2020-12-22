@@ -10,7 +10,7 @@
 
 I'm an enthusiast of the new techs, since 2014 when I created my first startup, called GoTalent, I begin to learning about big data and how the Machine Learning Algorithms could be modeling the society. 
 
-So, for the last six years I come studie and working with data. Specially with Python to analysis and create Machine Learning models. Feel free to follow me and add my contact.
+So, for the last six years I come studie and working with data, specially with Python to analysis and create Machine Learning models. Feel free to follow me and add my contact.
 
 Best Reggards! 
 
