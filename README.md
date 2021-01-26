@@ -8,17 +8,11 @@
 # Edinor Júnior
 <sub>*Machine Learning Engineer</sub>
 
-I'm an enthusiast of the new techs, since 2014 when I created my first startup, called GoTalent, I begin to learning about big data and how the Machine Learning Algorithms could be modeling the society. 
+In this repository you will find some analysis, studies and algorithms for machine learning and deep learning. Feel free to contribute and share your knowledge.
 
-So, for the last six years I have come to study and work with data, specially with Python to analyze and create Machine Learning models. Feel free to follow me and add my contact.
-
-Best Regards! 
+Enjoy!
 
 **Background in:** Python, Machine Learning, R, Big Data and Neural Network.
-
-**Links:**
-* [LinkedIn](https://www.linkedin.com/in/edinorjr)
-
 
 ## Projects:
 * [The Titanic Chalenge](https://bit.ly/3lDd1yl)
