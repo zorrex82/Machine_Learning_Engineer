@@ -19,6 +19,7 @@ Enjoy!
 * [Used Cars Sales](https://bit.ly/35o8KZz)
 * [Predicting Hospital Expenses](https://bit.ly/330QNPl)
 * [Suicide Rate Overview in Brazil](https://bit.ly/2VEg51F)
+* [Social Network Sentiment Analysis](https://bit.ly/3pSqy73)
 ---
 
 
