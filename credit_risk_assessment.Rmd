@@ -1,0 +1,180 @@
+---
+title: "Credit Risk Assessment"
+author: "Edinor Junior"
+date: "Feb 08, 2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project - Credit Risk Assessment
+
+For this analysis, we will use a set of German Credit Data, already clean and organized for the creation of the predictive model.
+
+The entire project will be described according to its stages.
+
+This project is a initial study about credit risk assessment, build with the intent to create a base to more elaborate works. 
+
+Please, feel free to contribute and share your knowledge
+
+## Step 1 - Collecting the Data
+
+Here is the data collection, in this case a csv file.
+
+```{r collect}
+# Data Collecting
+credit.df <- read.csv("credit_dataset.csv", header = TRUE, sep = ",")
+```
+
+## Step 2 - Normalizing the Data
+
+```{r normalizing}
+## Converting variables to type factor (categorical)
+to.factors <- function(df, variables){
+  for (variable in variables){
+    df[[variable]] <- as.factor(df[[variable]])
+  }
+  return(df)
+}
+
+## Normalizing
+scale.features <- function(df, variables){
+  for (variable in variables){
+    df[[variable]] <- scale(df[[variable]], center=T, scale=T)
+  }
+  return(df)
+}
+
+# Normalizing variables
+numeric.vars <- c("credit.duration.months", "age", "credit.amount")
+credit.df <- scale.features(credit.df, numeric.vars)
+
+# Variables of type factor
+categorical.vars <- c('credit.rating', 'account.balance', 'previous.credit.payment.status',
+                      'credit.purpose', 'savings', 'employment.duration', 'installment.rate',
+                      'marital.status', 'guarantor', 'residence.duration', 'current.assets',
+                      'other.credits', 'apartment.type', 'bank.credits', 'occupation', 
+                      'dependents', 'telephone', 'foreign.worker')
+
+credit.df <- to.factors(df = credit.df, variables = categorical.vars)
+
+```
+
+## Step 3 - Splitting the data into training and test data
+
+```{r training}
+# Dividing the data into training and testing - 60:40 ratio
+indexes <- sample(1:nrow(credit.df), size = 0.6 * nrow(credit.df))
+train.data <- credit.df[indexes,]
+test.data <- credit.df[-indexes,]
+
+```
+
+## Step 4 - Feature Selection
+
+```{r performance}
+library(caret) 
+library(randomForest) 
+
+# Function to select variables
+run.feature.selection <- function(num.iters=20, feature.vars, class.var){
+  set.seed(10)
+  variable.sizes <- 1:10
+  control <- rfeControl(functions = rfFuncs, method = "cv", 
+                        verbose = FALSE, returnResamp = "all", 
+                        number = num.iters)
+  results.rfe <- rfe(x = feature.vars, y = class.var, 
+                     sizes = variable.sizes, 
+                     rfeControl = control)
+  return(results.rfe)
+}
+
+# Execute the function
+rfe.results <- run.feature.selection(feature.vars = train.data[,-1], 
+                                     class.var = train.data[,1])
+
+
+# Visualize the results
+rfe.results
+varImp((rfe.results))
+```
+
+
+## Step 5 - Creating and Evaluating the First Version of the Model
+ 
+ 
+```{r evaluating}
+# Creating and Evaluating the Model
+library(caret) 
+library(ROCR) 
+
+# Utility library for building graphics
+source("plot_utils.R") 
+
+## separate feature and class variables
+test.feature.vars <- test.data[,-1]
+test.class.var <- test.data[,1]
+
+# Building a logistic regression model
+formula.init <- "credit.rating ~ ."
+formula.init <- as.formula(formula.init)
+lr.model <- glm(formula = formula.init, data = train.data, family = "binomial")
+
+# Visualize model
+summary(lr.model)
+
+# Testing the model using training data
+lr.predictions <- predict(lr.model, test.data, type="response")
+lr.predictions <- round(lr.predictions)
+
+# Evaluating the model
+confusionMatrix(table(data = lr.predictions, reference = test.class.var), positive = '1')
+```
+
+
+## Step 6 - Optimizing the model
+
+
+```{r optimizing}
+## Feature selection
+formula <- "credit.rating ~ ."
+formula <- as.formula(formula)
+control <- trainControl(method = "repeatedcv", number = 10, repeats = 2)
+model <- train(formula, data = train.data, method = "glm", trControl = control)
+importance <- varImp(model, scale = FALSE)
+plot(importance)
+
+
+# Building the model with the select variables
+formula.new <- "credit.rating ~ account.balance + credit.purpose + previous.credit.payment.status + savings + credit.duration.months"
+formula.new <- as.formula(formula.new)
+lr.model.new <- glm(formula = formula.new, data = train.data, family = "binomial")
+
+# Visualizing the model
+summary(lr.model.new)
+
+# Testing the model with the test data
+lr.predictions.new <- predict(lr.model.new, test.data, type="response") 
+lr.predictions.new <- round(lr.predictions.new)
+
+# Evaluating the model
+confusionMatrix(table(data=lr.predictions.new, reference=test.class.var), positive='1')
+```
+
+## Step 7 - ROC Curve and Final Evaluating the model
+
+```{r curve}
+# Assessing model performance
+
+# Creating ROC curves
+lr.model.best <- lr.model
+lr.prediction.values <- predict(lr.model.best, test.feature.vars, type = "response")
+predictions <- prediction(lr.prediction.values, test.class.var)
+par(mfrow = c(1,2))
+plot.roc.curve(predictions, title.text = "ROC Curve")
+plot.pr.curve(predictions, title.text = "Precision/Recall Curve")
+```
+
+
