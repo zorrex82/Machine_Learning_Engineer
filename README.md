@@ -20,6 +20,7 @@ Enjoy!
 * [Predicting Hospital Expenses](https://bit.ly/330QNPl)
 * [Suicide Rate Overview in Brazil](https://bit.ly/2VEg51F)
 * [Social Network Sentiment Analysis](https://bit.ly/3pSqy73)
+* [Credit Risk Assessment](https://bit.ly/3jxRhU9)
 ---
 
 
